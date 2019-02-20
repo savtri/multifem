@@ -1,0 +1,394 @@
+MICROSTRUCTURE_TYPE$
+mI1
+% mI1: Specify the Microstructure Index of coarse element
+%	e.g. 1
+POINT$
+minIo1 mixo1 miyo1 mizo1
+minIo2 mixo2 miyo2 mizo2
+minIo3 mixo3 miyo3 mizo3
+minIo4 mixo4 miyo4 mizo4
+% minIo1: Specify the micro node Index (Oversampling Region)
+% mixo1: Specify the micro x coord of micro node Index minIo1 (Oversampling Region)
+% miyo1: Specify the micro y coord of micro node Index minIo1 (Oversampling Region)
+% mizo1: Specify the micro z coord of micro node Index minIo1 (Oversampling Region)
+% e.g.  1	0.00	0.00	0.00
+%       2	0.01	0.00	0.00
+%       3	0.02	0.01	0.00
+%       4	0.00	0.01	0.00
+ELEMENT$
+feIo1   elTypeoI   minIo1   minIo2   minIo3   minIo4   GroupIndex1
+% feIo1: Specify the finite element Index (Oversampling Region)
+% elTypeoI: Specify the finite element type Index (Oversampling Region)
+% 		case 1 --> Plane Stress
+%		case 2 --> Plane Strain		
+% minIo1: Specify first node of finite element (Oversampling Region)
+% minIo2: Specify second node of finite element (Oversampling Region)
+% minIo3: Specify third node of finite element (Oversampling Region)
+% minIo4: Specify fourth node of finite element (Oversampling Region)
+% GroupIndex1: Specify the type Group Index in finite element of RVE
+% e.g.  1	1	1	2	3	4	1
+%
+% The Oversampling Region as well as the RVE Target is illustrated below (please zoom out for better viewing)
+%
+%                                                              Oversampling Region
+%                                                     
+%
+%
+%               o ---------------------------------o-----------------------------------------o------------------------------------ o
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       31       *        32       |         33       *         34           |         35       *         36       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               |**********************************|*****************************************|*************************************|        
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |                                          RVE Target
+%               |       25       *        26       |         27       *         28           |         29       *         30       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               o ---------------*-----------------o------------------*----------------------o------------------*----------------- o                         o------------------*----------------------o
+%               |                *                 |                  *                      |                  *                  |                         |                  *                      |
+%               |                *                 |                  *                      |                  *                  |                         |                  *                      |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |                         |  finite element  *    finite element    |
+%               |       19       *        20       |         21       *         22           |         23       *         24       |                         |        21        *         23           |
+%               |                *                 |                  *                      |                  *                  |                         |                  *                      |
+%               |                *                 |                  *                      |                  *                  |                         |                  *                      |
+%               |**********************************|*****************************************|*************************************|                         |*****************************************|
+%               |                *                 |                  *                      |                  *                  |                         |                  *                      |
+%               |                *                 |                  *                      |                  *                  |                         |                  *                      |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |                         |   finite element *   finite element     |
+%               |       13       *        14       |         15       *         16           |         17       *         18       |                         |        15        *         17           |
+%               |                *                 |                  *                      |                  *                  |                         |                  *                      |
+%               |                *                 |                  *             ---------|------------------*------------------|---------------->        |                  *                      |
+%               |                *                 |                  *                      |                  *                  |                         |                  *                      |
+%               o ---------------*-----------------o------------------*----------------------o------------------*----------------- o                         o------------------*----------------------o
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       7        *        8        |         9        *         10           |          11      *         12       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               |**********************************|*****************************************|*************************************|
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       1        *        2        |         3        *         4            |         5        *         6        |
+%               |     |          *                 |                  *                      |                  *                  |
+%               o ----|----------------------------o-----------------------------------------o------------------------------------ o
+%					  |							
+%                     |
+%                     V
+%
+%      minIo4: (mixo4,miyo4)    minIo3: (mixo3,miyo3)
+%			    o******************o
+%               *                  *
+%               *   finite element *
+%               *    GroupIndex1   *
+%               *(thickness1,E1,v1)*
+%               *                  *
+%               o******************o 
+%      minIo1: (mixo1,miyo1)    minIo2: (mixo2,miyo2)
+%
+%
+%
+%
+%
+%
+%
+%
+Bounded Nodes
+bno1
+bno2
+bno3
+bno4
+bno5
+bno6
+bno7
+bno8
+bno9
+bno10
+bno11
+bno12
+bno13
+bno14
+bno15
+bno16
+bno17
+bno18
+bno19
+bno20
+bno21
+bno22
+bno23
+bno24
+% bn1: Specify the micro node Index of Bounded Nodes (Oversampling Region) 
+% e.g. 
+%    1
+%    2
+%    3
+%    4
+%    5
+%    6
+%    7
+%    14
+%    21
+%    28
+%    35
+%    42
+%    49
+%    48
+%    47
+%    46
+%    45
+%    44
+%    43
+%    36
+%    29
+%    22
+%    15
+%    8
+%
+%
+%
+%                                                              Oversampling Region
+%                                                     
+%
+%			(bno19)		   	 (bno18)				(bno17)	      	    (bno16)                (bno15)              (bno14)             (bno13)
+%               o ---------------------------------o-----------------------------------------o------------------------------------ o
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       31       *        32       |         33       *         34           |         35       *         36       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%      (bno20)  |**********************************|*****************************************|*************************************|  (bno12)       
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       25       *        26       |         27       *         28           |         29       *         30       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%      (bno21)  o ---------------*-----------------o------------------*----------------------o------------------*----------------- o   (bno11)
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       19       *        20       |         21       *         22           |         23       *         24       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%      (bno22)  |**********************************|*****************************************|*************************************|  (bno10)
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       13       *        14       |         15       *         16           |         17       *         18       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%      (bno23)  o ---------------*-----------------o------------------*----------------------o------------------*----------------- o  (bno9)
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       7        *        8        |         9        *         10           |          11      *         12       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%      (bno24)  |**********************************|*****************************************|*************************************|   (bno8)
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       1        *        2        |         3        *         4            |         5        *         6        |
+%               |                *                 |                  *                      |                  *                  |
+%               o ---------------------------------o-----------------------------------------o------------------------------------ o
+%			(bno1)		   	 (bno2)				(bno3)	      	    (bno4)                (bno5)              (bno6)             (bno7)
+%                      
+%                      
+%
+$$
+POINT_OVERSAMPLING$
+minI1 mix1 miy1 miz1
+minI2 mix2 miy2 miz2
+minI3 mix3 miy3 miz3
+minI4 mix4 miy4 miz4
+% minI1: Specify the micro node Index (RVE Target) 
+% mix1: Specify the micro x coord of micro node Index minI1 (RVE Target)
+% miy1: Specify the micro y coord of micro node Index minI1 (RVE Target)
+% miz1: Specify the micro z coord of micro node Index minI1 (RVE Target)
+% e.g.  1	0.00	0.00	0.00
+%       2	0.01	0.00	0.00
+%       3	0.02	0.01	0.00
+%       4	0.00	0.01	0.00
+%
+% Note! : In this code only 2D problems are considered. However, it can be easily implemented in 3D problems 	
+ELEMENT_OVERSAMPLING$
+feI1   elTypeI   minI1   minI2   minI3   minI4   GroupIndex1
+% feI1: Specify the finite element Index (RVE Target)
+% elTypeI: Specify the finite element type Index (RVE Target)
+% 		case 1 --> Plane Stress
+%		case 2 --> Plane Strain		
+% minI1: Specify first node of finite element (RVE Target)
+% minI2: Specify second node of finite element (RVE Target)
+% minI3: Specify third node of finite element (RVE Target)
+% minI4: Specify fourth node of finite element (RVE Target)
+% GroupIndex1: Specify the type Group Index in finite element of RVE (RVE Target)
+% e.g.  1	1	1	2	3	4	1
+%
+%
+%                           RVE Target
+%
+%     n4: (x4,y4)		                           n3: (x3,y3)
+%         o ------------------------------------------- o
+%		  |	                                            |
+%		  |                                             |
+%         |                 ceI1                        |
+%         |            Coarse Element                   |
+%         |                                             |
+%		  |                 mI1                         |
+%         |            Microstructure  (RVE)            |
+%         |                                             |
+%         |                                             |             minI4: (mix4,miy4)        minI3: (mix3,miy3)
+%         |********************                         |                  o********************o
+%		  |                   *                         |                  *                    *
+%		  |  Finite Element   *                         |                  *                    *
+%		  |                   *                         |                  *   Finite Element   *
+%		  |    GroupIndex1  --*-------------------------|---------->       *    GroupIndex1     *
+%		  |(thickness1,E1,v1) *                         |                  * (thickness1,E1,v1) *
+%		  |                   *                         |                  *                    *
+%		  |                   *                         |                  *                    *
+%         |                   *                         |                  *                    *
+%		  o ------------------------------------------- o                  o********************o
+%     n1: (x1,y1)                                  n2: (x2,y2)         minI1: (mix1,miy1)        minI2: (mix2,miy2)
+%		  
+%		  
+%
+Bounded_Nodes_OVERSAMPLING
+bn1
+bn2
+bn3
+bn4
+bn5
+bn6
+bn7
+bn8
+% bn1: Specify the micro node Index of Bounded Nodes (RVE Target)
+% e.g. 1
+%      2
+%      3
+%      6
+%      9
+%      8
+%      7
+%      4
+%
+%
+%		(bn7)				   (bn6)     			  (bn5)
+%
+%     n4: (x4,y4)		                           n3: (x3,y3)
+%         o ------------------------------------------- o
+%		  |	                     *                      |
+%		  |                      *                      |
+%         |                      *                      |
+%         |                      *                      |
+%         |    Finite Element 3  *  Finite Element 4    |
+%		  |                      *                      |
+%         |                      *                      |
+%         |                      *                      |
+%         |                      *                      |            
+%  (bn8)  |*********************************************|  (bn4)          
+%		  |                      *                      |            
+%		  |                      *                      |            
+%		  |                      *                      |            
+%		  |   Finite Element 1   *   Finite Element 2   |
+%		  |                      *                      |            
+%		  |                      *                      |            
+%		  |                      *                      |            
+%         |                      *                      |            
+%		  o ------------------------------------------- o            
+%     n1: (x1,y1)                                  n2: (x2,y2)       
+%		 
+%		(bn1)				   (bn2)  			      (bn3)
+%		  
+%
+%
+%
+%
+%
+%
+%
+$$
+Bounded_Nodes_GLOBAL_OVERSAMPLING
+bng1
+bng2
+bng3
+bng4
+bng5
+bng6
+bng7
+bng8
+% bng1: Specify the micro node Index of Bounded Nodes of RVE Target in Oversampling Region Axis
+% e.g. 17
+%      18
+%      19
+%      24
+%      25
+%      26
+%      31
+%      32
+%      33
+%
+%
+%
+%                                                              Oversampling Region
+%                                                     
+%
+%               o ---------------------------------o-----------------------------------------o------------------------------------ o
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       31       *        32       |         33       *         34           |         35       *         36       |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%      		    |**********************************|*****************************************|*************************************|   
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%      		    |       25       *        26       |         27       *         28           |         29       *         30       |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 |(bng7)            * (bng6)               |(bng5)            *                  |
+%      		    o ---------------*-----------------o------------------*----------------------o------------------*----------------- o  
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%      		    |       19       *        20       |         21       *         22           |         23       *         24       |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 | (bng8)           *                      | (bng4)           *                  |
+%      		    |**********************************|*****************************************|*************************************|  
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%      		    |       13       *        14       |         15       *         16           |         17       *         18       |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 | (bng1)           * (bng2)               | (bng3)           *                  |
+%      		    o ---------------*-----------------o------------------*----------------------o------------------*----------------- o  
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%      		    |       7        *        8        |         9        *         10           |          11      *         12       |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |                *                 |                  *                      |                  *                  |
+%      		    |**********************************|*****************************************|*************************************|  
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               |                *                 |                  *                      |                  *                  |
+%               | finite element *  finite element |  finite element  *   finite element     |   finite element *   finite element |
+%               |       1        *        2        |         3        *         4            |         5        *         6        |
+%               |                *                 |                  *                      |                  *                  |
+%               o ---------------------------------o-----------------------------------------o------------------------------------ o
+%                      
+%                      
+%
+%
+%
+$$

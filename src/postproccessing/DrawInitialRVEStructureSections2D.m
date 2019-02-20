@@ -1,0 +1,35 @@
+function DrawInitialRVEStructureSections2D( VisibleIndex,SaveIndex,Fem,InputIndex,InputMultiscaleIndex,fid,figureID )
+%% Visible Index
+if VisibleIndex==0 %case no Visible
+    figure('Visible','off')
+else %case Visible
+    figure(figureID);
+end
+%% Draw Initial Structure Section of RVE
+NumberOfDSections=max(InputMultiscaleIndex.Elements(:,7));
+cmap = hsv(NumberOfDSections);
+hold on
+for i=1:InputMultiscaleIndex.NumberOfElements
+    NodeIndex=Fem(i).NodeIndex(1,:); %Define element connectivity
+    XYZ=zeros(2,size(NodeIndex,2)); %Define element coords
+    %Assign element coords
+    XYZ=Get_Element_Coords(InputMultiscaleIndex.IndexXYNodes,Fem(i).NodeIndex,1);                        
+    %Draw Lines
+    for j=1:size(NodeIndex,2)-1 
+        line([XYZ(1,j);XYZ(1,j+1)],[XYZ(2,j);XYZ(2,j+1)],'Color','k','LineWidth',2);
+    end
+    %Draw close Line
+    line([XYZ(1,j+1);XYZ(1,1)],[XYZ(2,j+1);XYZ(2,1)],'Color','k','LineWidth',2);
+    
+    %Assign the patch according to material section of finite element
+    p=patch(XYZ(1,:),XYZ(2,:),[cmap(InputMultiscaleIndex.Elements(i,7),:)]);
+end
+axis equal
+grid on
+box on
+%% Save Index
+if SaveIndex==1 %case Save
+    saveas(gcf,fid,'png')
+end
+end
+

@@ -1,0 +1,129 @@
+MICROSTRUCTURE_TYPE$
+mI1
+% mI1: Specify the Microstructure Index of coarse element
+%	e.g. 1
+POINT$
+minI1 mix1 miy1 miz1
+minI2 mix2 miy2 miz2
+minI3 mix3 miy3 miz3
+minI4 mix4 miy4 miz4
+% minI1: Specify the micro node Index
+% mix1: Specify the micro x coord of micro node Index minI1
+% miy1: Specify the micro y coord of micro node Index minI1
+% miz1: Specify the micro z coord of micro node Index minI1
+% e.g.  1	0.00	0.00	0.00
+%       2	0.01	0.00	0.00
+%       3	0.02	0.01	0.00
+%       4	0.00	0.01	0.00
+%
+% Note! : In this code only 2D problems are considered. However, it can be easily implemented in 3D problems 
+ELEMENT$
+feI1   elTypeI   minI1   minI2   minI3   minI4   GroupIndex1
+% feI1: Specify the finite element Index
+% elTypeI: Specify the finite element type Index
+% 		case 1 --> Plane Stress
+%		case 2 --> Plane Strain		
+% minI1: Specify first node of finite element
+% minI2: Specify second node of finite element
+% minI3: Specify third node of finite element
+% minI4: Specify fourth node of finite element
+% GroupIndex1: Specify the type Group Index in finite element of RVE
+% e.g.  1	1	1	2	3	4	1
+%
+%
+%     n4: (x4,y4)		                           n3: (x3,y3)
+%         o ------------------------------------------- o
+%		  |	                                            |
+%		  |                                             |
+%         |                 ceI1                        |
+%         |            Coarse Element                   |
+%         |                                             |
+%		  |                 mI1                         |
+%         |            Microstructure  (RVE)            |
+%         |                                             |
+%         |                                             |             minI4: (mix4,miy4)        minI3: (mix3,miy3)
+%         |********************                         |                  o********************o
+%		  |                   *                         |                  *                    *
+%		  |  Finite Element   *                         |                  *                    *
+%		  |                   *                         |                  *   Finite Element   *
+%		  |    GroupIndex1  --*-------------------------|---------->       *    GroupIndex1     *
+%		  |(thickness1,E1,v1) *                         |                  * (thickness1,E1,v1) *
+%		  |                   *                         |                  *                    *
+%		  |                   *                         |                  *                    *
+%         |                   *                         |                  *                    *
+%		  o ------------------------------------------- o                  o********************o
+%     n1: (x1,y1)                                  n2: (x2,y2)         minI1: (mix1,miy1)        minI2: (mix2,miy2)
+%		  
+%		  
+%
+Bounded Nodes
+bn1
+bn2
+bn3
+bn4
+bn5
+bn6
+bn7
+bn8
+% bn1: Specify the micro node Index of Bounded Nodes 
+% e.g. 1
+%      2
+%      3
+%      6
+%      9
+%      8
+%      7
+%      4
+%
+%
+%		(bn7)				   (bn6)     			  (bn5)
+%
+%     n4: (x4,y4)		                           n3: (x3,y3)
+%         o ------------------------------------------- o
+%		  |	                     *                      |
+%		  |                      *                      |
+%         |                      *                      |
+%         |                      *                      |
+%         |    Finite Element 3  *  Finite Element 4    |
+%		  |                      *                      |
+%         |                      *                      |
+%         |                      *                      |
+%         |                      *                      |            
+%  (bn8)  |*********************************************|  (bn4)          
+%		  |                      *                      |            
+%		  |                      *                      |            
+%		  |                      *                      |            
+%		  |   Finite Element 1   *   Finite Element 2   |
+%		  |                      *                      |            
+%		  |                      *                      |            
+%		  |                      *                      |            
+%         |                      *                      |            
+%		  o ------------------------------------------- o            
+%     n1: (x1,y1)                                  n2: (x2,y2)       
+%		 
+%		(bn1)				   (bn2)  			      (bn3)
+%		  
+%
+%
+%
+%
+%
+%
+%
+$$
+
+
+
+%if your problem demands more than one microstructure you can simple extend the Input file below by following the above guides  
+% e.g. 
+MICROSTRUCTURE_TYPE$
+mI2
+% mI2: Specify the Microstructure Index of coarse element
+%	e.g. 2
+POINT$
+........
+ELEMENT$
+........
+Bounded Nodes
+........
+$$
